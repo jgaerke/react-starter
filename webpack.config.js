@@ -1,13 +1,13 @@
-var path = require('path')
+const path = require('path');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-  //devtool: 'cheap-module-eval-source-map',
-  entry: [
-    './index.js'
-  ],
+  entry: './index.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: './dist/bundle.js'
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
@@ -17,12 +17,26 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'file?name=[name].[ext]'
+        loader: 'html-loader'
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
+        loader: 'style-loader!css-loader'
       }
-    ]
-  }
-};
+    ],
+  },
+
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: process.env.NODE_ENV === 'production'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './template/index.html',
+      inject: 'body',
+      hash: true
+    })
+  ]
+}
+

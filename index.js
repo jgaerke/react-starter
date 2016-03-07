@@ -1,15 +1,26 @@
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import App from './containers/App'
-import configureStore from './store/configureStore'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import { App, Home, Foo, Bar } from './components'
+import configureStore from './store'
 import styles from './style/site.css'
 
-const store = configureStore()
+var store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store)
 
-render(
+ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <div>
+      <Router history={history}>
+        <Route path="/" component={App}>
+          <IndexRoute component={Home}/>
+          <Route path="foo" component={Foo}/>
+          <Route path="bar" component={Bar}/>
+        </Route>
+      </Router>
+    </div>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('mount')
 )

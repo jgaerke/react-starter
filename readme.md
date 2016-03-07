@@ -1,5 +1,4 @@
-
-## Getting Started
+ng Started
 
 1. `npm install -g babel` to install babel globally
 1. `npm install` to install all node_modules dependencies
