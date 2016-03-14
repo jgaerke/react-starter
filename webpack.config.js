@@ -1,42 +1,23 @@
-const path = require('path');
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-
 module.exports = {
-  entry: './index.js',
+  entry: './main.js',
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: './',
+    filename: 'index.js'
+  },
+  devServer: {
+    inline: true,
+    port: 3333
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel'
-      },
-      {
-        test: /\.html$/,
-        loader: 'html-loader'
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react']
+        }
       }
-    ],
-  },
-
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: process.env.NODE_ENV === 'production'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './template/index.html',
-      inject: 'body',
-      hash: true
-    })
-  ]
+    ]
+  }
 }
-
