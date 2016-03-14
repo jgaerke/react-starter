@@ -1,12 +1,13 @@
 module.exports = {
-  entry: './main.js',
+  devtool: 'source-map',
+  entry: './index.js',
   output: {
     path: './',
-    filename: 'index.js'
+    filename: 'bundle.js'
   },
   devServer: {
     inline: true,
-    port: 3333
+    port: 8080
   },
   module: {
     loaders: [
