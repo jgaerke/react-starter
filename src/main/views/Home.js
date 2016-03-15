@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { Button, Grid, Row, Col } from 'react-bootstrap'
 import GlobalNavbar from '../components/GlobalNavbar'
 
 class Home extends Component {
@@ -8,7 +9,14 @@ class Home extends Component {
 
   render() {
     return (
-        <GlobalNavbar></GlobalNavbar>
+        <div>
+          <GlobalNavbar></GlobalNavbar>
+          <Grid>
+            <Row className="show-grid">
+              <Button>Submit</Button>
+            </Row>
+          </Grid>
+        </div>
     )
   }
 }
