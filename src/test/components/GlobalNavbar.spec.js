@@ -23,9 +23,9 @@ describe('GlobalNavbar', () => {
 
 
     //then
-    markup.includes('React Starter');
-    markup.includes('Login');
-    markup.includes('Register');
+    expect(markup).to.include('React Starter');
+    expect(markup).to.include('Login');
+    expect(markup).to.include('Register');
     expect(actual.props.inverse).to.be.true
     expect(actual.props.fixedTop).to.be.true
   });
