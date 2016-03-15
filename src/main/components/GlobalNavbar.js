@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
-const GlobalNavbar = (props) => {
+
+const GlobalNavbar = () => {
   return <Navbar inverse fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
