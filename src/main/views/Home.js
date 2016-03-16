@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { Button, Grid, Row, Col } from 'react-bootstrap'
 import GlobalNavbar from '../components/GlobalNavbar'
+import MessageListContainer from '../containers/MessageListContainer'
 
 class Home extends Component {
   constructor(props, context) {
@@ -11,11 +11,7 @@ class Home extends Component {
     return (
         <div>
           <GlobalNavbar></GlobalNavbar>
-          <Grid>
-            <Row className="show-grid">
-              <Button>Submit</Button>
-            </Row>
-          </Grid>
+          <MessageListContainer/>
         </div>
     )
   }
