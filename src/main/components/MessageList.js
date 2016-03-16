@@ -7,9 +7,22 @@ const propTypes = {
 }
 
 class MessageList extends Component {
-  componentDidUpdate() {
-    console.log(this.props)
+
+  getMessageId() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+    }
+
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+           s4() + '-' + s4() + s4() + s4();
   }
+
+  componentDidUpdate() {
+    //console.log(this.props)
+  }
+
   render() {
     return (
         <Grid>
@@ -17,7 +30,8 @@ class MessageList extends Component {
             <Col md={8}>
               <ul>
                 {
-                  this.props.messages.map((message) => <li key={new Date().getUTCMilliseconds()}>{message}</li>)
+                  this.props.messages.map(
+                      (message) => <li key={this.getMessageId()}>{message}</li>)
                 }
               </ul>
             </Col>

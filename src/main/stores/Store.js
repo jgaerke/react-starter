@@ -9,12 +9,20 @@ const middleware = applyMiddleware(thunk);
 const enhancer = compose(middleware, devTools);
 const store = createStore(reducer,initialState,enhancer);
 
+//if (module.hot) {
+//  // Enable Webpack hot module replacement for reducers
+//  module.hot.accept('../reducers', () => {
+//    const nextReducer = rootReducer;
+//    store.replaceReducer(nextReducer);
+//  });
+//}
+
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
   module.hot.accept('../reducers', () => {
-    const nextReducer = rootReducer;
-    store.replaceReducer(nextReducer);
-  });
+    const nextRootReducer = require('../reducers').default
+    store.replaceReducer(nextRootReducer)
+  })
 }
 
 export default store;
